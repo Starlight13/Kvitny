@@ -1,0 +1,39 @@
+{
+  "name": "kvitny",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Starlight13/Kvitny.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Starlight13/Kvitny/issues"
+  },
+  "homepage": "https://github.com/Starlight13/Kvitny#readme",
+  "devDependencies": {
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-less": "^4.0.1"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ]
+}
