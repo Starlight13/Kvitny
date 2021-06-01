@@ -10,33 +10,42 @@
 
 <body class="page">
     <header class="header">
-        <div class="logo">
-            <img class="logo__img" src="images/logo.svg">
-            <div class="logo__text">
-                <p class="logo__title">КВІТНИ</p>
-                <p class="logo__descript">Магазин живих квітів</p>
+        <div class="header__navigation-container">
+            <div class="logo">
+                <img class="logo__img" src="images/logo.svg">
+                <div class="logo__text">
+                    <p class="logo__title">КВІТНИ</p>
+                    <p class="logo__descript">Магазин живих квітів</p>
+                </div>
+            </div>
+            <div class="header__buttons desktop-only">
+                <a id="catalog__button" class="header__button selected">Каталог</a>
+                <a id="about-us__button" class="header__button">Про нас</a>
+                <a id="how-to-order__button" class="header__button">Як замовити</a>
+                <a id="pay-and-delivery__button" class="header__button">Оплата та доставка</a>
+            </div>
+            <div class="header__navigation-icon phone-only">
+                <span class="icon-part"></span>
+                <span class="icon-part"></span>
+                <span class="icon-part"></span>
             </div>
         </div>
-        <div class="header__buttons">
-            <a id="catalog__button" class="header__button selected">Каталог</a>
-            <a id="about-us__button" class="header__button">Про нас</a>
-            <a id="how-to-order__button" class="header__button">Як замовити</a>
-            <a id="pay-and-delivery__button" class="header__button">Оплата та доставка</a>
-        </div>
-        <p class="header__phone-number">+38 (098) 784-23-85</p>
-        <div class="header__order__button">
-            <span class="header__order__button__text">Замовити дзвінок</span>
-        </div>
-        <div class="cart">
-            <img class="cart__img" src="images/cart.svg">
-            <span id="cart__price" class="cart__price">567 грн.</span>
-            <img class="cart__caret-down" src="images/caret-down.svg">
+        <div class="header__order-container">
+            <p class="header__phone-number">+38 (098) 784-23-85</p>
+            <div class="header__order__button desktop-only">
+                <span class="header__order__button__text">Замовити дзвінок</span>
+            </div>
+            <div class="cart">
+                <img class="cart__img" src="images/cart.svg">
+                <span id="cart__price" class="cart__price">567 грн.</span>
+                <img class="cart__caret-down" src="images/caret-down.svg">
+            </div>
         </div>
     </header>
     <div class="baner">
         <div class="baner__text">
-            <h1 class="baner__title">Швидка доставка квітів <br /> в будь-яке місце</h1>
-            <h4 class="baner__descript">Ми докладемо всі зусилля, щоб замовлення і доставка квітів <br /> займала
+            <h1 class="baner__title">Швидка доставка квітів в будь-яке місце</h1>
+            <h4 class="baner__descript">Ми докладемо всі зусилля, щоб замовлення і доставка квітів займала
                 мінімум часу та максимум задоволення</h4>
             <div class="order__button"><span>Замовити</span></div>
         </div>
@@ -44,26 +53,26 @@
     <div class="popular-bouquet__section">
         <h2 class="section__title">Популярні букети</h2>
         <div class="bouquet__carusel">
-            <img class="carusel-arrow" src="./images/arrow-left.png" />
-            <div class="bouquet__card">
+            <img class="carusel-arrow desktop-only" src="./images/arrow-left.png" />
+            <div class="bouquet__card" id="bouquet__card1">
                 <img class="card__img" src="./images/popular1.png" />
                 <span class="card__title">Букет “Відкриття”</span>
                 <span class="card__price">250 грн</span>
                 <div class="card__cart__button"><span>В кошик</span></div>
             </div>
-            <div class="bouquet__card">
+            <div class="bouquet__card desktop-only" id="bouquet__card2">
                 <img class="card__img" src="./images/popular2.png" />
                 <span class="card__title">Букет “Ніжність”</span>
                 <span class="card__price">300 грн</span>
                 <div class="card__cart__button"><span>В кошик</span></div>
             </div>
-            <div class="bouquet__card">
+            <div class="bouquet__card desktop-only" id="bouquet__card3">
                 <img class="card__img" src="./images/popular3.png" />
                 <span class="card__title">Букет “Спокій”</span>
                 <span class="card__price">350 грн</span>
                 <div class="card__cart__button"><span>В кошик</span></div>
             </div>
-            <img class="carusel-arrow" src="./images/arrow-right.png" />
+            <img class="carusel-arrow desktop-only" src="./images/arrow-right.png" />
         </div>
         <div class="carusel__page-indicators">
             <div class="page-indicator selected"></div>
@@ -73,7 +82,19 @@
     </div>
     <div class="catalog__section">
         <h2 class="section__title">Каталог</h2>
-        <table class="catalog__table">
+        <div class="catalog__carusel phone-only">
+            <div class="catalog__card__size_big flowers-in-box">
+                <div class="card__footer">
+                    <span class="card__title">Квіти в коробці</span>
+                </div>
+            </div>
+            <div class="carusel__page-indicators">
+                <div class="page-indicator selected"></div>
+                <div class="page-indicator"></div>
+                <div class="page-indicator"></div>
+            </div>
+        </div>
+        <table class="catalog__table desktop-only">
             <tr>
                 <td rowspan="2">
                     <div class="catalog__card__size_big flowers-in-box">
@@ -123,9 +144,9 @@
                 <br />Заповніть форму і ми Вам зателефонуємо
             </p>
             <form class="make-your-bouquet__form">
-                <input class="textfield" id="name__textfield" placeholder="Ім'я" type="text"/>
-                <input class="textfield" id="email__textfield" placeholder="Електронна пошта" type="text"/>
-                <input class="textfield" id="phone-number__textfield" placeholder="Номер телефону" type="text"/>
+                <input class="textfield" id="name__textfield" placeholder="Ім'я" type="text" />
+                <input class="textfield" id="email__textfield" placeholder="Електронна пошта" type="text" />
+                <input class="textfield" id="phone-number__textfield" placeholder="Номер телефону" type="text" />
                 <input type="submit" value="Відправити заявку">
             </form>
         </div>
@@ -133,11 +154,11 @@
     <div class="instagram__section">
         <h2 class="section__title">Ми в Instagram</h2>
         <div class="instagram__carusel">
-            <img class="carusel-arrow" src="./images/arrow-left.png" />
-            <img class="instagram__img" src="./images/instagram1.png" />
-            <img class="instagram__img" src="./images/instagram2.png" />
-            <img class="instagram__img" src="./images/instagram3.png" />
-            <img class="carusel-arrow" src="./images/arrow-right.png" />
+            <img class="carusel-arrow desktop-only" src="./images/arrow-left.png" />
+            <img class="instagram__img" id="instagram__img1" src="./images/instagram1.png" />
+            <img class="instagram__img desktop-only" id="instagram__img2" src="./images/instagram2.png" />
+            <img class="instagram__img desktop-only" id="instagram__img3" src="./images/instagram3.png" />
+            <img class="carusel-arrow desktop-only" src="./images/arrow-right.png" />
         </div>
         <div class="carusel__page-indicators">
             <div class="page-indicator selected"></div>
@@ -159,11 +180,12 @@
             <a id="how-to-order__button" class="footer__button">Як замовити</a>
             <a id="pay-and-delivery__button" class="footer__button">Оплата та доставка</a>
         </div>
-        <img class="footer__arrow-up" src="./images/arrow-up.svg"/>
+        <img class="footer__arrow-up desktop-only" src="./images/arrow-up.svg" />
         <p class="footer__phone-number">+38 (098) 784-23-85</p>
         <div class="footer__order__button">
             <span class="footer__order__button__text">Замовити дзвінок</span>
         </div>
+        <img class="footer__arrow-up phone-only" src="./images/arrow-up.svg" />
     </footer>
 </body>
 

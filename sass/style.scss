@@ -1,3 +1,5 @@
+@import 'breakpoints';
+
 $font-stack: Montserrat, sans-serif;
 $green-color: #445340;
 
@@ -47,6 +49,9 @@ body * {
         margin: 10px 20px 50px 20px;
         font-weight: 900;
         font-size: 26px;
+        @include small-down {
+            font-size: 18px;
+        }
     }
 }
 
@@ -115,7 +120,11 @@ body * {
 
 
 .header{
-    @include centered(row);
+    display: flex;
+    @include small-down {
+        height: 125px;
+        flex-direction: column;
+    };
     background: rgba(68, 83, 64, 0.5);
     height: 80px;
     width: 100%;
@@ -123,55 +132,97 @@ body * {
     top: 0;
     z-index: 1;
     color: white;
-    .logo {
-        @include logo()
-    }
-    .header__buttons{
-        @include header-footer__buttons()
-    }
-    .selected {
-        font-weight: 700;
-    }
-    .header__phone-number {
-        @include header-footer__phone-number()
-    }
-    .header__order__button {
-        @include order-call__button();
-    }
-    .cart {
+    .header__navigation-container{
+        width: 100%;
         @include centered(row);
-        .cart__price{
-            font-size: 13px;
+        justify-content: space-around;
+        .logo {
+            @include logo();
+        }
+        .header__buttons{
+            @include small-down{
+                display: none;
+            } 
+            @include header-footer__buttons();
+        }
+        .selected {
             font-weight: 700;
-            margin: 8px;
+        }
+        .header__navigation-icon{
+            .icon-part {
+                width: 33px;
+                height: 2px;
+                background: white;
+                margin: 4px;
+            }
         }
     }
-}
+    .header__order-container{
+        @include small-down {
+            margin: 10px 0;
+        }
+        @include centered(row);
+        justify-content: space-around;
+        .header__phone-number {
+            @include header-footer__phone-number()
+        }
+        .header__order__button {
+            @include order-call__button();
+            }
+        }
+        .cart {
+            @include centered(row);
+            .cart__price{
+                font-size: 13px;
+                font-weight: 700;
+                margin: 8px;
+            }
+        }
+        .header__navigation-icon{
+            @include small-down {
+                @include centered(column)
+            }
+        }
+    }
 
 .baner {
+    margin: 0;
     height: 700px;
     @include background-photo("../../images/baner.png");
+    background-position: 48% 0%;
     display: flex;
     align-items: center;
     .baner__text {
-        margin-left: 12%;
         padding-top: 3%;
+        padding: 20px;
         @include centered(column);
-        align-items: flex-start;
-    }
-    .baner__title {
-        font-weight: 900;
-        font-size: 40px;
-    }
-    .baner__descript {
-        margin: 30px 0;
-        font-weight: 500;
-        font-size: 15px;
+        @include small-up {
+            align-items: flex-start;
+            margin-left: 12%;
+        }
+        .baner__title {
+            font-weight: 900;
+            font-size: 40px;
+            max-width: 570px;
+            @include small-down {
+                font-size: 28px;
+            }
+        }
+        .baner__descript {
+            margin: 30px 0;
+            font-weight: 500;
+            font-size: 15px;
+            max-width: 570px;
+            @include small-down {
+                font-size: 14px;
+            }
+        }
     }
     .order__button {
         @include button(220px, 48px);
         font-weight: 600;
         font-size: 16px;
+        align-self: flex-start;
     }
 }
 
@@ -182,12 +233,22 @@ body * {
         .carusel-arrow {
             padding-bottom: 100px;
         }
+        @include small-down{
+            #bouquet__card2, #bouquet__card3{
+                display: none;
+            }
+        }
         .bouquet__card {
             margin: 0 30px;
             @include centered(column);
             justify-content: space-between;
             .card__img {
-                width: 370px;
+                @include small-up{
+                    width: 370px;
+                }
+                @include small-down {
+                    width: 300px;
+                }
             }
             .card__title {
                 margin-top: 20px;
@@ -213,6 +274,22 @@ body * {
 .catalog__section {
     @include section();
     padding: 20px;
+    .catalog__carusel{
+        @include centered(column);
+        .catalog__card__size_big {
+            @include background-photo("../../images/catalog-big-picture.png");
+            width: 290px;
+            height: 350px;
+            position: relative;
+            .card__footer {
+                @include catalog-card__footer()
+            }
+        }
+        .carusel__page-indicators {
+            @include carusel__page-indicators()
+        }
+
+    }
     .catalog__table {
         border-collapse: collapse;
         z-index: 0;
@@ -255,18 +332,25 @@ body * {
 .make-your-bouquet__section {
     height: 560px;
     @include section();
+    margin: 0;
     align-items: flex-start;
     justify-content: center;
     @include background-photo("../../images/make-your-bouquet.png");
+    background-position: 50% 50%;
     .make-your-bouquet__div {
         box-sizing: border-box;
         padding: 50px 30px;
-        width: 491px;
+        max-width: 491px;
         height: 471px;
         background: rgba(255, 253, 253, 0.5);
         backdrop-filter: blur(10px);
         @include centered(column);
-        margin-left: 9%;
+        @include small-up {
+            margin-left: 9%;
+        } 
+        @include small-down {
+            margin: 20px;
+        }
         .make-your-bouquet__info {
             font-weight: 500;
             font-size: 15px;
@@ -282,6 +366,10 @@ body * {
                 background-color: rgba(166, 185, 161, 0.3);
                 border: none;
                 height: 40px;
+                @include small-down {
+                    height: 50px;
+                    font-size: 15px;
+                }
                 margin: 10px;
                 padding: 10px;
                 width: 100%;
@@ -318,17 +406,21 @@ body * {
     height: 270px;
     color: white;
     @include centered(row);
+    @include small-down {
+        @include centered(column)
+    }
     .logo {
         @include logo();
     }
     .footer__buttons{
         @include header-footer__buttons();
+        width: 90%;
     }
     .footer__button.selected {
         font-weight: 700;
     }
     .footer__arrow-up{
-        margin: 40px;
+        margin: 5px 40px;
     }
     .footer__order__button{
         @include order-call__button()
@@ -338,6 +430,17 @@ body * {
     }
 }
 
+.desktop-only{
+    @include small-down{
+        display: none;
+    }
+}
+
+.phone-only {
+    @include medium-up{
+        display: none;
+    }
+}
 
 
 
