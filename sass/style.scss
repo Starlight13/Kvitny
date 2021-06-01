@@ -3,15 +3,14 @@
 $font-stack: Montserrat, sans-serif;
 $green-color: #445340;
 
+
+
 body {
     margin: 0px;
     font: 100% $font-stack;
     font-size: 12px;
 }
 
-body * {
-    margin: 0px;
-}
 
 @mixin centered($direction) {
     display: flex;
@@ -275,6 +274,9 @@ body * {
     @include section();
     padding: 20px;
     .catalog__carusel{
+        @include medium-up {
+            display: none;
+        }
         @include centered(column);
         .catalog__card__size_big {
             @include background-photo("../../images/catalog-big-picture.png");
@@ -291,6 +293,9 @@ body * {
 
     }
     .catalog__table {
+        @include small-down {
+            display: none;
+        }
         border-collapse: collapse;
         z-index: 0;
         td {

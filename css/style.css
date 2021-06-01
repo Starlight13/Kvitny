@@ -4,10 +4,6 @@ body {
   font-size: 12px;
 }
 
-body * {
-  margin: 0px;
-}
-
 .header {
   display: flex;
   background: rgba(68, 83, 64, 0.5);
@@ -286,6 +282,11 @@ body * {
   justify-content: center;
   align-items: center;
 }
+@media (min-width: 768px) {
+  .catalog__section .catalog__carusel {
+    display: none;
+  }
+}
 .catalog__section .catalog__carusel .catalog__card__size_big {
   background: url("../../images/catalog-big-picture.png");
   background-repeat: no-repeat;
@@ -325,6 +326,11 @@ body * {
 .catalog__section .catalog__table {
   border-collapse: collapse;
   z-index: 0;
+}
+@media (max-width: 767px) {
+  .catalog__section .catalog__table {
+    display: none;
+  }
 }
 .catalog__section .catalog__table td {
   border: solid 30px #FFFFFF;
