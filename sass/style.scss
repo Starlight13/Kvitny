@@ -56,7 +56,7 @@ body {
 
 @mixin logo {
     @include centered(row);
-    margin-right: 40px;
+    min-width: 200px;
     .logo__title {
         margin: 2px;
         font-weight: bold;
@@ -124,6 +124,7 @@ body {
         height: 125px;
         flex-direction: column;
     };
+    @include centered(row);
     background: rgba(68, 83, 64, 0.5);
     height: 80px;
     width: 100%;
@@ -132,7 +133,10 @@ body {
     z-index: 1;
     color: white;
     .header__navigation-container{
-        width: 100%;
+        width: 50%;
+        @include small-down {
+            width: 100%
+        }
         @include centered(row);
         justify-content: space-around;
         .logo {
@@ -148,6 +152,7 @@ body {
             font-weight: 700;
         }
         .header__navigation-icon{
+            margin-right: 30px;
             .icon-part {
                 width: 33px;
                 height: 2px;
@@ -157,8 +162,10 @@ body {
         }
     }
     .header__order-container{
+        margin: 20px;
         @include small-down {
             margin: 10px 0;
+            width: 100%
         }
         @include centered(row);
         justify-content: space-around;
@@ -419,7 +426,9 @@ body {
     }
     .footer__buttons{
         @include header-footer__buttons();
-        width: 90%;
+        @include small-down{
+            width: 90%;
+        }
     }
     .footer__button.selected {
         font-weight: 700;
