@@ -2,25 +2,20 @@ $small-width: 480px;
 $medium-width: 768px;
 $large-width: 1024px;
 
-@mixin small-down {
-    @media (max-width: #{$medium-width - 1px}) {
-      @content;
-    }
-  }
 
-@mixin small-only {
-    @media (min-width: #{$small-width}) and (max-width: #{$medium-width - 1px}) {
-      @content;
-    }
+@mixin phone {
+  @media (max-width: #{$small-width}) {
+    @content;
   }
-
-@mixin small-up {
-    @media (min-width: #{$small-width}) {
-      @content;
-    }
 }
 
-@mixin medium-up {
+@mixin tablet {
+  @media (min-width: #{$small-width}) and (max-width: #{$medium-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
   @media (min-width: #{$medium-width}) {
     @content;
   }

@@ -11,6 +11,12 @@ body {
     font-size: 12px;
 }
 
+@mixin burger-icon-part {
+    width: 33px;
+    height: 2px;
+    background: white;
+    margin: 4px;
+}
 
 @mixin centered($direction) {
     display: flex;
@@ -28,6 +34,7 @@ body {
 @mixin background-photo($url) {
     background: url($url);
     background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 
 @mixin button($width, $height) {
@@ -48,7 +55,7 @@ body {
         margin: 10px 20px 50px 20px;
         font-weight: 900;
         font-size: 26px;
-        @include small-down {
+        @include phone {
             font-size: 18px;
         }
     }
@@ -107,9 +114,9 @@ body {
 
 @mixin header-footer__buttons {
     display: flex;
-    width: 405px;
+    width: 350px;
     justify-content: space-between;
-    margin: 20px;
+    margin: 10px;
 }
 
 @mixin header-footer__phone-number {
@@ -120,7 +127,7 @@ body {
 
 .header{
     display: flex;
-    @include small-down {
+    @include phone {
         height: 125px;
         flex-direction: column;
     };
@@ -133,9 +140,8 @@ body {
     z-index: 1;
     color: white;
     .header__navigation-container{
-        width: 50%;
-        @include small-down {
-            width: 100%
+        @include phone {
+            width: 100%;
         }
         @include centered(row);
         justify-content: space-around;
@@ -143,7 +149,10 @@ body {
             @include logo();
         }
         .header__buttons{
-            @include small-down{
+            @include phone{
+                display: none;
+            } 
+            @include tablet{
                 display: none;
             } 
             @include header-footer__buttons();
@@ -152,18 +161,22 @@ body {
             font-weight: 700;
         }
         .header__navigation-icon{
-            margin-right: 30px;
+            @include desktop {
+                display: none;
+            }
+            @include tablet {
+                display: none;
+            }
+            @include centered(column);
+            margin: 10px;
             .icon-part {
-                width: 33px;
-                height: 2px;
-                background: white;
-                margin: 4px;
+                @include burger-icon-part();
             }
         }
     }
     .header__order-container{
         margin: 20px;
-        @include small-down {
+        @include phone {
             margin: 10px 0;
             width: 100%
         }
@@ -173,10 +186,14 @@ body {
             @include header-footer__phone-number()
         }
         .header__order__button {
+            @include phone {
+                display: none;
+            }
             @include order-call__button();
             }
         }
         .cart {
+            margin: 10px;
             @include centered(row);
             .cart__price{
                 font-size: 13px;
@@ -185,8 +202,16 @@ body {
             }
         }
         .header__navigation-icon{
-            @include small-down {
-                @include centered(column)
+            @include desktop {
+                display: none;
+            }
+            @include phone {
+                display: none;
+            }
+            @include centered(column);
+            margin-right: 5px;
+            .icon-part {
+                @include burger-icon-part();
             }
         }
     }
@@ -201,16 +226,19 @@ body {
     .baner__text {
         padding-top: 3%;
         padding: 20px;
+        padding-left: 10%;
         @include centered(column);
-        @include small-up {
-            align-items: flex-start;
-            margin-left: 12%;
+        @include phone {
+            padding: 10px;
+        }
+        @include tablet{
+            padding: 10px;
         }
         .baner__title {
             font-weight: 900;
             font-size: 40px;
             max-width: 570px;
-            @include small-down {
+            @include phone {
                 font-size: 28px;
             }
         }
@@ -219,7 +247,7 @@ body {
             font-weight: 500;
             font-size: 15px;
             max-width: 570px;
-            @include small-down {
+            @include phone {
                 font-size: 14px;
             }
         }
@@ -237,10 +265,21 @@ body {
     .bouquet__carusel {
         @include centered(row);
         .carusel-arrow {
+            @include phone {
+                display: none;
+            }
+            @include tablet {
+                display: none;
+            }
             padding-bottom: 100px;
         }
-        @include small-down{
-            #bouquet__card2, #bouquet__card3{
+        @include phone{
+            .bouquet__card.large-screen, .bouquet__card.medium-screen{
+                display: none;
+            }
+        }
+        @include tablet {
+            .bouquet__card.large-screen {
                 display: none;
             }
         }
@@ -249,12 +288,7 @@ body {
             @include centered(column);
             justify-content: space-between;
             .card__img {
-                @include small-up{
-                    width: 370px;
-                }
-                @include small-down {
-                    width: 300px;
-                }
+                width: 100%;
             }
             .card__title {
                 margin-top: 20px;
@@ -281,7 +315,10 @@ body {
     @include section();
     padding: 20px;
     .catalog__carusel{
-        @include medium-up {
+        @include desktop {
+            display: none;
+        }
+        @include tablet {
             display: none;
         }
         @include centered(column);
@@ -299,45 +336,47 @@ body {
         }
 
     }
-    .catalog__table {
-        @include small-down {
+    .catalog__grid{
+        @include phone {
             display: none;
         }
-        border-collapse: collapse;
-        z-index: 0;
-        td {
-            border: solid 30px #FFFFFF;
-            .catalog__card__size_big {
-                @include background-photo("../../images/catalog-big-picture.png");
-                height: 430px;
-                width: 370px;
-                position: relative;
-                .card__footer {
-                    @include catalog-card__footer()
-                }
-            }
-            .catalog__card__size_small {
-                height: 200px;
-                width: 370px;
-                position: relative;
-                .card__footer {
-                    @include catalog-card__footer()
-                }
-            }
-            .catalog__card__size_small.avtor-bouquet {
-                @include background-photo("../../images/avtor-bouquet.png")
-            }
-            .catalog__card__size_small.composition {
-                @include background-photo("../../images/composition.png")
-            }
-            .catalog__card__size_small.festive-bouquet {
-                @include background-photo("../../images/festive-bouquet.png")
-            }
-            .catalog__card__size_small.florism {
-                @include background-photo("../../images/florism.png")
+        width: 80%;
+        display: grid;
+        grid-template-columns: 2.5fr repeat(2, 3fr);
+        grid-auto-rows: minmax(200px, auto);
+        column-gap: 30px;
+        row-gap: 30px;
+        @include tablet{
+            width: 100%;
+            grid-template-columns: repeat(2, 3fr);
+        }
+        .catalog__card{
+            height: 100%;
+            width: 100%;
+            max-height: 430px;
+            max-width: 370px;
+            position: relative;
+            .card__footer {
+                @include catalog-card__footer()
             }
         }
-
+        .catalog__card:nth-child(1){
+            @include background-photo("../../images/catalog-big-picture.png");
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        .catalog__card.avtor-bouquet {
+            @include background-photo("../../images/avtor-bouquet.png")
+        }
+        .catalog__card.composition {
+            @include background-photo("../../images/composition.png")
+        }
+        .catalog__card.festive-bouquet {
+            @include background-photo("../../images/festive-bouquet.png")
+        }
+        .catalog__card.florism {
+            @include background-photo("../../images/florism.png")
+        }
     }
 }
 
@@ -357,10 +396,14 @@ body {
         background: rgba(255, 253, 253, 0.5);
         backdrop-filter: blur(10px);
         @include centered(column);
-        @include small-up {
+        @include desktop {
             margin-left: 9%;
         } 
-        @include small-down {
+        //  ######### //
+        @include tablet {
+            margin: 20px;
+        }
+        @include phone {
             margin: 20px;
         }
         .make-your-bouquet__info {
@@ -378,7 +421,11 @@ body {
                 background-color: rgba(166, 185, 161, 0.3);
                 border: none;
                 height: 40px;
-                @include small-down {
+                @include phone {
+                    height: 50px;
+                    font-size: 15px;
+                }
+                @include tablet {
                     height: 50px;
                     font-size: 15px;
                 }
@@ -402,10 +449,33 @@ body {
 .instagram__section{
     @include section();
     .instagram__carusel{
+        .carusel-arrow {
+            @include phone {
+                display: none;
+            }
+            @include tablet{
+                display: none;
+            }
+        }
+        width: 100%;
         @include centered(row);
-        .instagram__img{
-            height: 370px;
+        .image__container {
+            width: 100%;
             margin: 0 30px;
+            .instagram__img{
+                max-width: 370px;
+                width: 100%;
+            }
+        }
+        @include phone{
+            .image__container.large-screen, .image__container.medium-screen{
+                display: none;
+            }
+        }
+        @include tablet{
+            .image__container.large-screen {
+                display: none;
+            }
         }
     }
     .carusel__page-indicators{
@@ -417,17 +487,34 @@ body {
     background: $green-color;
     height: 270px;
     color: white;
-    @include centered(row);
-    @include small-down {
-        @include centered(column)
+    @include desktop {
+        @include centered(row);
     }
-    .logo {
-        @include logo();
+    @include centered(column);
+    @include phone {
+        // @include centered(column);
+        .footer__arrow-up.desktop-only{
+            display: none;
+        }
     }
-    .footer__buttons{
-        @include header-footer__buttons();
-        @include small-down{
-            width: 90%;
+    .footer__navigation-container {
+        @include centered(row);
+        @include tablet {
+            justify-content: space-around;
+            width: 100%;
+        }
+        @include phone {
+            @include centered(column)
+        }
+        .logo {
+            @include logo();
+        }
+        .footer__buttons{
+            @include header-footer__buttons();
+            @include centered(row);
+            .footer__button{
+                margin: 5px;
+            }
         }
     }
     .footer__button.selected {
@@ -436,25 +523,38 @@ body {
     .footer__arrow-up{
         margin: 5px 40px;
     }
-    .footer__order__button{
-        @include order-call__button()
+    .footer__arrow-up.large-screen{
+        @include phone {
+            display: none;
+        }
+        @include tablet {
+            display: none;
+        }
     }
-    .footer__phone-number {
-        @include header-footer__phone-number()
+    .footer__arrow-up.medium-screen {
+        @include desktop{
+            display: none;
+        }
+    }
+    .footer__order-container{
+        @include centered(row);
+        @include tablet {
+            @include centered(row);
+            justify-content: space-around;
+            width: 100%;
+        }
+        @include phone {
+            @include centered(column);
+        }
+        .footer__order__button{
+            @include order-call__button()
+        }
+        .footer__phone-number {
+            @include header-footer__phone-number()
+        }
     }
 }
 
-.desktop-only{
-    @include small-down{
-        display: none;
-    }
-}
-
-.phone-only {
-    @include medium-up{
-        display: none;
-    }
-}
 
 
 
