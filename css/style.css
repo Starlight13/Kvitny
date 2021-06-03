@@ -4,6 +4,11 @@ body {
   font-size: 12px;
 }
 
+.button {
+  border: none;
+  background: none;
+}
+
 .header {
   display: flex;
   display: flex;
@@ -42,20 +47,22 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 200px;
+  color: white;
+  text-decoration: none;
 }
 .header .header__navigation-container .logo .logo__title {
   margin: 2px;
   font-weight: bold;
   font-size: 13px;
   line-height: 16px;
-  letter-spacing: 0.095em;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 .header .header__navigation-container .logo .logo__descript {
   margin: 2px;
   font-weight: 500;
   line-height: 15px;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.8px;
 }
 .header .header__navigation-container .logo .logo__img {
   height: 35px;
@@ -76,6 +83,10 @@ body {
   .header .header__navigation-container .header__buttons {
     display: none;
   }
+}
+.header .header__navigation-container .header__buttons .header__button {
+  color: white;
+  text-decoration: none;
 }
 .header .header__navigation-container .selected {
   font-weight: 700;
@@ -118,10 +129,12 @@ body {
   }
 }
 .header .header__order-container .header__phone-number {
-  letter-spacing: 0.03em;
+  letter-spacing: 0.3px;
   font-size: 13px;
 }
 .header .header__order-container .header__order__button {
+  color: white;
+  text-decoration: none;
   border: 2px solid #FFFFFF;
   padding: 8px 15px;
   margin: 17px;
@@ -139,9 +152,11 @@ body {
   align-items: center;
 }
 .header .cart .cart__price {
+  margin: 8px;
+  color: white;
   font-size: 13px;
   font-weight: 700;
-  margin: 8px;
+  font: 100% Montserrat, sans-serif;
 }
 .header .header__navigation-icon {
   display: flex;
@@ -683,20 +698,22 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 200px;
+  color: white;
+  text-decoration: none;
 }
 .footer .footer__navigation-container .logo .logo__title {
   margin: 2px;
   font-weight: bold;
   font-size: 13px;
   line-height: 16px;
-  letter-spacing: 0.095em;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 .footer .footer__navigation-container .logo .logo__descript {
   margin: 2px;
   font-weight: 500;
   line-height: 15px;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.8px;
 }
 .footer .footer__navigation-container .logo .logo__img {
   height: 35px;
@@ -714,6 +731,8 @@ body {
 }
 .footer .footer__navigation-container .footer__buttons .footer__button {
   margin: 5px;
+  color: white;
+  text-decoration: none;
 }
 .footer .footer__button.selected {
   font-weight: 700;
@@ -764,9 +783,10 @@ body {
   border: 2px solid #FFFFFF;
   padding: 8px 15px;
   margin: 17px;
+  color: white;
 }
 .footer .footer__order-container .footer__phone-number {
-  letter-spacing: 0.03em;
+  letter-spacing: 0.3px;
   font-size: 13px;
 }
 

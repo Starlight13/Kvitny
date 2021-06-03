@@ -11,6 +11,16 @@ body {
     font-size: 12px;
 }
 
+.button {
+    border: none;
+    background: none;
+}
+
+@mixin white-link {
+    color: white;
+    text-decoration: none;
+}
+
 @mixin burger-icon-part {
     width: 33px;
     height: 2px;
@@ -51,10 +61,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .section__title {
         margin: 10px 20px 50px 20px;
         font-weight: 900;
         font-size: 26px;
+
         @include phone {
             font-size: 18px;
         }
@@ -64,20 +76,23 @@ body {
 @mixin logo {
     @include centered(row);
     min-width: 200px;
+    @include white-link();
     .logo__title {
         margin: 2px;
         font-weight: bold;
         font-size: 13px;
         line-height: 16px;
-        letter-spacing: 0.095em;
+        letter-spacing: 1.2px;
         text-transform: uppercase;
     }
+
     .logo__descript {
         margin: 2px;
         font-weight: 500;
         line-height: 15px;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.8px;
     }
+
     .logo__img {
         height: 35px;
         margin: 10px;
@@ -88,6 +103,7 @@ body {
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
+
     .page-indicator {
         width: 29.11px;
         height: 6px;
@@ -95,6 +111,7 @@ body {
         opacity: 0.4;
         margin: 6px;
     }
+
     .page-indicator.selected {
         opacity: 1;
     }
@@ -119,18 +136,21 @@ body {
     margin: 10px;
 }
 
+
 @mixin header-footer__phone-number {
-    letter-spacing: 0.03em;
+    letter-spacing: 0.3px;
     font-size: 13px;
 }
 
 
-.header{
+.header {
     display: flex;
+
     @include phone {
         height: 125px;
         flex-direction: column;
     };
+
     @include centered(row);
     background: rgba(68, 83, 64, 0.5);
     height: 80px;
@@ -139,82 +159,110 @@ body {
     top: 0;
     z-index: 1;
     color: white;
-    .header__navigation-container{
+
+    .header__navigation-container { 
         @include phone {
             width: 100%;
         }
+
         @include centered(row);
         justify-content: space-around;
+
         .logo {
             @include logo();
         }
+
         .header__buttons{
             @include phone{
                 display: none;
             } 
+
             @include tablet{
                 display: none;
             } 
+
             @include header-footer__buttons();
+
+            .header__button {
+                @include white-link();
+            }
         }
+
         .selected {
             font-weight: 700;
         }
-        .header__navigation-icon{
+
+        .header__navigation-icon {
             @include desktop {
                 display: none;
             }
+
             @include tablet {
                 display: none;
             }
+
             @include centered(column);
             margin: 10px;
+
             .icon-part {
                 @include burger-icon-part();
             }
         }
     }
-    .header__order-container{
+
+    .header__order-container {
         margin: 20px;
+
         @include phone {
             margin: 10px 0;
             width: 100%
         }
+
         @include centered(row);
         justify-content: space-around;
+
         .header__phone-number {
-            @include header-footer__phone-number()
+            @include header-footer__phone-number();
         }
+
         .header__order__button {
             @include phone {
                 display: none;
             }
+            @include white-link();
             @include order-call__button();
-            }
-        }
-        .cart {
-            margin: 10px;
-            @include centered(row);
-            .cart__price{
-                font-size: 13px;
-                font-weight: 700;
-                margin: 8px;
-            }
-        }
-        .header__navigation-icon{
-            @include desktop {
-                display: none;
-            }
-            @include phone {
-                display: none;
-            }
-            @include centered(column);
-            margin-right: 5px;
-            .icon-part {
-                @include burger-icon-part();
-            }
         }
     }
+
+    .cart {
+        margin: 10px;
+        @include centered(row);
+        .cart__price {
+            margin: 8px;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            font: 100% $font-stack;
+        }
+    }
+
+    .header__navigation-icon {
+        @include desktop {
+            display: none;
+        }
+
+        @include phone {
+            display: none;
+        }
+
+        @include centered(column);
+        margin-right: 5px;
+
+        .icon-part {
+            @include burger-icon-part();
+        }
+    }
+}
 
 .baner {
     margin: 0;
@@ -223,35 +271,43 @@ body {
     background-position: 48% 0%;
     display: flex;
     align-items: center;
+
     .baner__text {
         padding-top: 3%;
         padding: 20px;
         padding-left: 10%;
         @include centered(column);
+
         @include phone {
             padding: 10px;
         }
+
         @include tablet{
             padding: 10px;
         }
+
         .baner__title {
             font-weight: 900;
             font-size: 40px;
             max-width: 570px;
+
             @include phone {
                 font-size: 28px;
             }
         }
+
         .baner__descript {
             margin: 30px 0;
             font-weight: 500;
             font-size: 15px;
             max-width: 570px;
+
             @include phone {
                 font-size: 14px;
             }
         }
     }
+
     .order__button {
         @include button(220px, 48px);
         font-weight: 600;
@@ -262,50 +318,62 @@ body {
 
 .popular-bouquet__section {
     @include section();
+
     .bouquet__carusel {
         @include centered(row);
+
         .carusel-arrow {
             @include phone {
                 display: none;
             }
+
             @include tablet {
                 display: none;
             }
+
             padding-bottom: 100px;
         }
+
         @include phone{
-            .bouquet__card.large-screen, .bouquet__card.medium-screen{
+            .bouquet__card.large-screen, .bouquet__card.medium-screen {
                 display: none;
             }
         }
+
         @include tablet {
             .bouquet__card.large-screen {
                 display: none;
             }
         }
+
         .bouquet__card {
             margin: 0 30px;
             @include centered(column);
             justify-content: space-between;
+
             .card__img {
                 width: 100%;
             }
+
             .card__title {
                 margin-top: 20px;
                 font-weight: 600;
                 font-size: 15px;
             }
+
             .card__price {
                 margin: 12px;
                 font-weight: 800;
                 font-size: 24px;
                 color: $green-color;
             }
+
             .card__cart__button {
                 @include button(136px, 37px);
             }
         }
     }
+
     .carusel__page-indicators {
         @include carusel__page-indicators()
     }
@@ -314,53 +382,63 @@ body {
 .catalog__section {
     @include section();
     padding: 20px;
+
     .catalog__carusel{
         @include desktop {
             display: none;
         }
+
         @include tablet {
             display: none;
         }
+
         @include centered(column);
+
         .catalog__card__size_big {
             @include background-photo("../../images/catalog-big-picture.png");
             width: 290px;
             height: 350px;
             position: relative;
+
             .card__footer {
                 @include catalog-card__footer()
             }
         }
+
         .carusel__page-indicators {
             @include carusel__page-indicators()
         }
 
     }
-    .catalog__grid{
+    .catalog__grid {
         @include phone {
             display: none;
         }
+
         width: 80%;
         display: grid;
         grid-template-columns: 2.5fr repeat(2, 3fr);
         grid-auto-rows: minmax(200px, auto);
         column-gap: 30px;
         row-gap: 30px;
-        @include tablet{
+
+        @include tablet {
             width: 100%;
             grid-template-columns: repeat(2, 3fr);
         }
-        .catalog__card{
+
+        .catalog__card {
             height: 100%;
             width: 100%;
             max-height: 430px;
             max-width: 370px;
             position: relative;
+
             .card__footer {
                 @include catalog-card__footer()
             }
         }
-        .catalog__card:nth-child(1){
+        .catalog__card:nth-child(1) {
             @include background-photo("../../images/catalog-big-picture.png");
             grid-row-start: 1;
             grid-row-end: 3;
@@ -388,6 +466,7 @@ body {
     justify-content: center;
     @include background-photo("../../images/make-your-bouquet.png");
     background-position: 50% 50%;
+
     .make-your-bouquet__div {
         box-sizing: border-box;
         padding: 50px 30px;
@@ -396,35 +475,42 @@ body {
         background: rgba(255, 253, 253, 0.5);
         backdrop-filter: blur(10px);
         @include centered(column);
+
         @include desktop {
             margin-left: 9%;
         } 
-        //  ######### //
+
         @include tablet {
             margin: 20px;
         }
+
         @include phone {
             margin: 20px;
         }
+
         .make-your-bouquet__info {
             font-weight: 500;
             font-size: 15px;
             text-align: center;
             line-height: 18px;
         }
+
         .make-your-bouquet__form {
             @include centered(column);
             align-items: flex-start;
             width: 100%;
+
             .textfield {
                 box-sizing: border-box;
                 background-color: rgba(166, 185, 161, 0.3);
                 border: none;
                 height: 40px;
+
                 @include phone {
                     height: 50px;
                     font-size: 15px;
                 }
+
                 @include tablet {
                     height: 50px;
                     font-size: 15px;
@@ -433,6 +519,7 @@ body {
                 padding: 10px;
                 width: 100%;
             }
+
             input[type=submit] {
                 @include button(100%, 40px);
                 font: 100% $font-stack;
@@ -446,39 +533,46 @@ body {
     }
 }
 
-.instagram__section{
+.instagram__section{ 
     @include section();
-    .instagram__carusel{
+
+    .instagram__carusel {
         .carusel-arrow {
             @include phone {
                 display: none;
             }
+
             @include tablet{
                 display: none;
             }
         }
         width: 100%;
         @include centered(row);
+
         .image__container {
             width: 100%;
             margin: 0 30px;
-            .instagram__img{
+
+            .instagram__img {
                 max-width: 370px;
                 width: 100%;
             }
         }
+
         @include phone{
-            .image__container.large-screen, .image__container.medium-screen{
+            .image__container.large-screen, .image__container.medium-screen {
                 display: none;
             }
         }
+
         @include tablet{
             .image__container.large-screen {
                 display: none;
             }
         }
     }
-    .carusel__page-indicators{
+
+    .carusel__page-indicators {
         @include carusel__page-indicators();
     }
 }
@@ -487,68 +581,85 @@ body {
     background: $green-color;
     height: 270px;
     color: white;
+
     @include desktop {
         @include centered(row);
     }
+
     @include centered(column);
+
     @include phone {
-        // @include centered(column);
-        .footer__arrow-up.desktop-only{
+        .footer__arrow-up.desktop-only {
             display: none;
         }
     }
+
     .footer__navigation-container {
         @include centered(row);
+
         @include tablet {
             justify-content: space-around;
             width: 100%;
         }
+
         @include phone {
             @include centered(column)
         }
+
         .logo {
             @include logo();
         }
-        .footer__buttons{
+
+        .footer__buttons {
             @include header-footer__buttons();
             @include centered(row);
-            .footer__button{
+
+            .footer__button {
                 margin: 5px;
+                @include white-link();
             }
         }
     }
     .footer__button.selected {
         font-weight: 700;
     }
-    .footer__arrow-up{
+    .footer__arrow-up {
         margin: 5px 40px;
     }
-    .footer__arrow-up.large-screen{
+    .footer__arrow-up.large-screen {
         @include phone {
             display: none;
         }
+
         @include tablet {
             display: none;
         }
     }
+
     .footer__arrow-up.medium-screen {
         @include desktop{
             display: none;
         }
     }
-    .footer__order-container{
+
+    .footer__order-container {
         @include centered(row);
+
         @include tablet {
             @include centered(row);
             justify-content: space-around;
             width: 100%;
         }
+
         @include phone {
             @include centered(column);
         }
-        .footer__order__button{
-            @include order-call__button()
+
+        .footer__order__button {
+            @include order-call__button();
+            color: white;
         }
+
         .footer__phone-number {
             @include header-footer__phone-number()
         }
