@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+<style>
+    * {
+        margin: 5px;
+    }
+</style>
+<script src="index.js"></script>
+<body>
+    <h1>To Do list</h1>
+    <div class="input__container">
+        <input id="task__input" type="text" placeholder="I need to do..." />
+        <input type="button" value="Add" onclick="addTodo(getTaskFromTextField())" />
+    </div>
+    <h3>To do:</h3>
+    <ol id="todo__list">
+    </ol>
+    <h3>Done:</h3>
+    <ul id="done__list">
+    </ul>
+</body>
+
+</html>
