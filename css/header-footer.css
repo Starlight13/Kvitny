@@ -31,7 +31,7 @@ footer{
     font-weight: bold;
     font-size: 13px;
     line-height: 16px;
-    letter-spacing: 0.095em;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
 }
 
@@ -40,7 +40,7 @@ footer{
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.85px;
 }
 
 .logo__img {
@@ -64,7 +64,7 @@ footer{
 }
 
 .header__phone-number, .footer__phone-number{
-    letter-spacing: 0.03em;
+    letter-spacing: 0.39px;
     color: #FFFFFF;
     font-size: 13px;
 }
