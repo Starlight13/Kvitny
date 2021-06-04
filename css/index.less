@@ -1,6 +1,18 @@
-#colors(){
-    green:  #445340;
-    green-transparant: rgba(68, 83, 64, 0.5);;
+@images: "../images";
+
+@standart-font: 12px;
+@bigger-font: 15px;
+
+@weight-bold: 700;
+@weight-normal: 500;
+
+@box-shadow: 0px 6px 30px 1px rgba(68, 83, 64, 0.4);
+
+#colors() {
+    secondary-color:  #445340;
+    secondary-color-transparant: rgba(68, 83, 64, 0.5);
+    primary-color: #FFFFFF;
+    link-color: #FFFFFF;
 }
 
 .centered {
@@ -9,7 +21,7 @@
     align-items: center;
 }
 
-.section{
+.section {
     margin: 25px;
     display: flex;
     flex-direction: column;
@@ -28,72 +40,91 @@
     justify-content: space-between;
 }
 
+.link {
+    color: #colors[link-color];
+    text-decoration: none;
+}
+
+.button {
+    background: none;
+    border: none;
+    font: inherit;
+}
+
 body {
     margin: 0;
     font-family: Montserrat;
     font-style: normal;
-    font-size: 16px;
+    padding: 0px;
 }
 
 .logo {
-    color: white;
+    color: #colors[primary-color];
     .centered();
     margin-right: 40px;
     .logo__title {
         margin: 2px;
         font-weight: bold;
-        font-size: 13px;
-        line-height: 16px;
-        letter-spacing: 0.095em;
+        font-size: @standart-font + 1px;
+        line-height: @bigger-font+1px;
+        letter-spacing: 1.2px;
         text-transform: uppercase;
     }
+
     .logo__descript { 
         margin: 2px;
-        font-weight: 500;
-        font-size: 12px;
+        font-weight: @weight-normal;
+        font-size: @standart-font;
         line-height: 15px;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.8px;
     }
+
     .logo__img {
         height: 35px;
         margin: 10px;
     }
 }
 
-.header{
-    background: #colors[green-transparant];
+.header {
+    background: #colors[secondary-color-transparant];
     .centered();
     height: 80px;
     width: 100%;
     position: fixed;
     top: 0;
     z-index: 1;
-    color: #FFFFFF;
+    color: #colors[primary-color];
+
     .header__buttons {
         display: flex;
         width: 405px;
         justify-content: space-between;
-        font-size: 12px;
+        font-size: @standart-font;
         margin: 20px;
     }
+
     .header__button.selected {
-        font-weight: 700;
+        font-weight: @weight-bold;
     }
-    .header__phone-number{
-        letter-spacing: 0.03em;
-        font-size: 13px;
+
+    .header__phone-number {
+        letter-spacing: 0.39px;
+        font-size: @standart-font + 1px;
     }
-    .header__order__button{
+
+    .header__order__button {
         border: 2px solid #FFFFFF;
         padding: 8px 15px;
-        font-size: 12px;
+        font-size: @standart-font;
         margin: 17px;
     }
+
     .cart {
         .centered();
-        .cart__price{
-            font-size: 13px;
-            font-weight: 700;
+
+        .cart__price {
+            font-size: @standart-font + 1px;
+            font-weight: @weight-bold;
             margin: 8px;
         }
     }
@@ -102,65 +133,77 @@ body {
 .baner {
     margin: 0;
     height: 700px;
-    background-image: url("../images/baner.png");
+    background-image: url("@{images}/baner.png");
     .section-with-photo();
+
     .baner__text {
         margin-left: 12%;
         padding-top: 3%;
         .column-space-between();
     }
+
     .baner__title {
         margin: 0;
         font-weight: 900;
         font-size: 40px;
     }
+
     .baner__descript {
         margin: 30px 0;
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: @weight-normal;
+        font-size: @bigger-font;
     }
+
     .order__button {
-        background: #colors[green];
-        box-shadow: 0px 6px 30px 1px rgba(68, 83, 64, 0.4);
+        background: #colors[secondary-color];
+        box-shadow: @box-shadow;
         width: 220px;
         height: 48px;
         .centered();
-        color: white;
+        color: #colors[primary-color];
     }
 }
 
 .popular-bouquet__section {
     .section();
+
     .section__title {
         margin-bottom: 50px;
     }
+
     .bouquet__carusel {
         .centered();
+
         .carusel-arrow {
             padding-bottom: 100px;
         }
+
         .bouquet__card {
             margin: 0 30px;
             .column-space-between();
             align-items: center;
+
             .card__img {
                 width: 370px;
             }
+
             .card__title {
                 margin-top: 20px;
                 font-weight: 600;
-                font-size: 15px;
+                font-size: @bigger-font;
             }
+
             .card__price {
                 margin: 12px;
                 font-weight: 800;
                 font-size: 24px;
-                color: #colors[green];
+                color: #colors[secondary-color];
             }
+
             .card__cart__button {
-                background: #colors[green];
-                box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.25);
-                color: white;
+                background: #colors[secondary-color];
+                box-shadow: @box-shadow;
+                color: #colors[primary-color];
                 width: 136px;
                 height: 37px;
                 .centered();
@@ -171,14 +214,16 @@ body {
         margin-top: 50px;
         display: flex;
         justify-content: space-between;
+
         .page-indicator {
             width: 29.11px;
             height: 6px;
-            background: #colors[green];
+            background: #colors[secondary-color];
             opacity: 0.4;
             margin: 6px;
         }
-        .page-indicator.selected{
+
+        .page-indicator.selected {
             opacity: 1;
         }
     }
@@ -187,42 +232,54 @@ body {
 .catalog__section {
     .section();
     padding: 20px;
-    .catalog__table {
-        border-collapse: collapse;
-        z-index: 0;
-        td {
-            border: solid 30px #FFFFFF;
-            .catalog__card__size_small {
-                height: 200px;
-                width: 370px;
-                position: relative;
-            }
-            .catalog__card__size_big {
-                .catalog__card__size_small();
-                height: 430px;
-                background: url("../images/catalog-big-picture.png");
-            }
-            .catalog__card__size_small.avtor-bouquet {
-                background: url("../images/avtor-bouquet.png");
-            }
-            .catalog__card__size_small.composition {
-                background: url("../images/composition.png");
-            }
-            .catalog__card__size_small.festive-bouquet {
-                background: url("../images/festive-bouquet.png");
-            }
-            .catalog__card__size_small.florism {
-                background: url("../images/florism.png");
-            }
-            .card__footer {
-                background: rgba(68, 83, 64, 0.7);
-                height: 60px;
-                width: 100%;
-                position: absolute;
-                bottom: 0;
-                .centered();
-                color: white;
-            }
+
+    .catalog__grid {
+        display: grid;
+        width: 80%;
+        grid-template-columns: repeat(3, 3fr);
+        grid-auto-rows: minmax(200px, auto);
+        column-gap: 30px;
+        row-gap: 30px;
+
+        .catalog__card__size_small {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .catalog__card__size_big {
+            grid-row-start: 1;
+            grid-row-end: 3;
+            .catalog__card__size_small();
+            height: 100%;
+            width: 100%;
+            background: url("@{images}/catalog-big-picture.png");
+        }
+
+        .catalog__card__size_small.avtor-bouquet {
+            background: url("@{images}/avtor-bouquet.png");
+        }
+
+        .catalog__card__size_small.composition {
+            background: url("@{images}/composition.png");
+        }
+
+        .catalog__card__size_small.festive-bouquet {
+            background: url("@{images}/festive-bouquet.png");
+        }
+
+        .catalog__card__size_small.florism {
+            background: url("@{images}/florism.png");
+        }
+
+        .card__footer {
+            background: rgba(68, 83, 64, 0.7);
+            height: 60px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            .centered();
+            color: #colors[primary-color];
         }
     }
 }
@@ -230,8 +287,9 @@ body {
 .make-your-bouquet__section {
     height: 560px;
     margin: 20px 0;
-    background: url("../images/make-your-bouquet.png");
+    background: url("@{images}/make-your-bouquet.png");
     .section-with-photo();
+
     .make-your-bouquet__div {
         box-sizing: border-box;
         padding: 50px 30px;
@@ -243,17 +301,21 @@ body {
         flex-direction: column;
         align-items: center;
         margin-left: 9%;
+
         .make-your-bouquet__title {
             margin: 0;
         }
+
         .make-your-bouquet__info {
-            font-size: 15px;
+            font-size: @bigger-font;
             text-align: center;
             line-height: 18px;
         }
+
         .make-your-bouquet__form {
             .column-space-between();
             width: 100%;
+
             .textfield {
                 box-sizing: border-box;
                 background-color: rgba(166, 185, 161, 0.3);
@@ -262,11 +324,12 @@ body {
                 margin: 10px;
                 padding: 10px;
             }
+
             input[type=submit] {
                 .textfield();
-                background: #colors[green];
-                color: white;
-                font-size: 16px;
+                background: #colors[secondary-color];
+                color: #colors[primary-color];
+                font-size: @bigger-font+1px;
                 font-family: Montserrat;
                 font-style: normal;
             }            
@@ -274,37 +337,45 @@ body {
     }
 }
 
-.instagram__section{
+.instagram__section {
     .section();
-    .instagram__carusel{
+
+    .instagram__carusel {
         .centered();
-        .instagram__img{
+
+        .instagram__img {
             height: 370px;
             margin: 0 30px;
         }
     }
+
     .carusel__page-indicators {
         .popular-bouquet__section > .carusel__page-indicators()
     }
 }
 
-footer{
-    background: #colors[green];
+footer {
+    background: #colors[secondary-color];
     .centered();
     height: 270px;
-    color: white;
-    .footer__buttons{
+    color: #colors[primary-color];
+
+    .footer__buttons {
         .header > .header__buttons();
+
         .footer__button.selected {
             .header > .header__button.selected()
         }
     }
-    .footer__arrow-up{
+
+    .footer__arrow-up {
         margin: 40px;
     }
+
     .footer__phone-number {
         .header > .header__phone-number()
     }
+
     .footer__order__button {
         .header > .header__order__button()
     }
