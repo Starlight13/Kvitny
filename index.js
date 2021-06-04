@@ -3,15 +3,25 @@ let todos = [];
 let dones = [];
 
 window.onload = () => {
-    if (localStorage.getItem('todos') != null){
+    if (localStorage.getItem('todos') != null) {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
 
-    if (localStorage.getItem("dones") != null){
+    if (localStorage.getItem("dones") != null) {
         dones = JSON.parse(localStorage.getItem('dones'));
     }
 
     rebuildLists();
+}
+
+function rebuildLists() {
+    for (let item in todos) {
+        $('#todo__list').append(createLi(todos[item], "todo__element"))
+    }
+
+    for (let item in dones) {
+        $('#done__list').append(createLi(dones[item], "done__element"))
+    }
 }
 
 window.onbeforeunload = () => {
@@ -26,105 +36,92 @@ window.onbeforeunload = () => {
     }
 }
 
-function rebuildLists() {
-    for (let item in todos) {
-        let newItemList = createLi(todos[item], "todo__element");
-        let todoList = document.getElementById("todo__list");
-        todoList.appendChild(newItemList);
-    }
-
-    for (let item in dones) {
-        let newItemList = createLi(dones[item], "done__element");
-        let doneList = document.getElementById("done__list");
-        doneList.appendChild(newItemList);
-    }
-}
-
-function removeFromArray(item, arr) {
-    for (var i = 0; i < arr.length; i++) { 
-        if (arr[i] == item) { 
-            arr.splice(i, 1); 
-            return;
-        }
-    }
-}
-
 function getTaskFromTextField() {
-    return document.getElementById("task__input").value;
+    let input = $("#task__input").val()
+    $("#task__input").val("")
+    return input;
+}
+
+
+function addTodo(task) {
+    todos.push(task)
+    $('#todo__list').append(createLi(task, "todo__element"))
 }
 
 function createLi(task, className) {
-    let taskText = document.createElement("span");
-    taskText.innerHTML = task;
 
-    let deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "Delete";
-    deleteButton.addEventListener('click', deleteTask);
+    let li = $('<li/>')
+        .addClass(className)
 
-    let doneCheckbox = document.createElement('input');
-    doneCheckbox.setAttribute("type", "checkbox");
-    doneCheckbox.addEventListener('change', doneTodo);
+    $(li)
+        .addClass(className)
 
-    if (className == "done__element") {
-        doneCheckbox.checked = true;
-        doneCheckbox.disabled = true;
+    $('<span/>')
+        .text(task)
+        .appendTo(li);
+
+    $('<button/>')
+        .text("Delete")
+        .attr("type", "button")
+        .on('click', deleteTask)
+        .appendTo(li);
+
+    $('<input/>')
+        .attr('type', 'checkbox')
+        .on('change', doneTodo)
+        .appendTo(li);
+
+    if ($(li).hasClass("done__element")) {
+        $(li).children('input')
+            .attr({
+                checked: true,
+                disabled: true
+            });
     }
 
-    let liElement = document.createElement('li');
-    liElement.setAttribute("class", className);
-    liElement.appendChild(taskText);
-    liElement.appendChild(deleteButton);
-    liElement.appendChild(doneCheckbox);
-
-    return liElement;
-}
-
-function addTodo(task) {
-    todos.push(task);
-
-    let newItemList = createLi(task, "todo__element");
-    let todoList = document.getElementById("todo__list");
-    todoList.appendChild(newItemList);
-}
-
-function addDone(task) {
-    dones.push(task);
-
-    let newItemList = createLi(task, "done__element");
-    let doneList = document.getElementById("done__list");
-    doneList.appendChild(newItemList);
+    return li;
 }
 
 function deleteTask(event) {
-
     let deleteButton = event.target;
-    let listElement = deleteButton.parentNode;
-    let taskName = listElement.querySelector("span").innerHTML;
 
-    if (listElement.getAttribute("class") == "todo__element") {
+    let task = $(deleteButton).parent();
+    let taskName = $(task).children('span').text();
+
+    if ($(task).hasClass("todo__element")) {
         removeFromArray(taskName, todos);
     } else {
         removeFromArray(taskName, dones);
     }
 
-    deleteButton.parentNode.remove();
+    $(task).remove();
 }
 
 function doneTodo(event) {
 
-    let checkbox = event.target;
-    checkbox.disabled = true;
-    checkbox.style.backgroundColor = "green";
+    let doneCheckbox = event.target;
+    $(doneCheckbox).attr('disabled', true);
 
-    let done = checkbox.parentNode;
-    deleteTask(event);
+    let doneTask = $(doneCheckbox).parent();
+    $(doneCheckbox).parent().remove();
 
-    let taskName = done.querySelector("span").innerHTML;
+    let taskName = $(doneTask).children('span').text();
     removeFromArray(taskName, todos);
-
     dones.push(taskName);
 
-    done.setAttribute("class", "done__element");
-    let doneList = document.getElementById("done__list");
-    doneList.appendChild(done);
+    $(doneTask).removeClass('todo__element')
+        .addClass('done__element');
+
+    $(doneTask).children('button').on('click', deleteTask)
+
+    $('#done__list').append(doneTask);
+}
+
+function removeFromArray(item, arr) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == item) {
+            arr.splice(i, 1);
+            return;
+        }
+    }
 }
