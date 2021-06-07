@@ -1,127 +1,59 @@
 
-let todos = [];
-let dones = [];
-
-window.onload = () => {
-    if (localStorage.getItem('todos') != null) {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
-
-    if (localStorage.getItem("dones") != null) {
-        dones = JSON.parse(localStorage.getItem('dones'));
-    }
-
-    rebuildLists();
-}
-
-function rebuildLists() {
-    for (let item in todos) {
-        $('#todo__list').append(createLi(todos[item], "todo__element"))
-    }
-
-    for (let item in dones) {
-        $('#done__list').append(createLi(dones[item], "done__element"))
-    }
-}
-
-window.onbeforeunload = () => {
-    localStorage.clear()
-
-    if (todos.length != 0) {
-        localStorage.setItem('todos', JSON.stringify(todos));
-    }
-
-    if (dones.length != 0) {
-        localStorage.setItem('dones', JSON.stringify(dones));
-    }
-}
-
-function getTaskFromTextField() {
-    let input = $("#task__input").val()
-    $("#task__input").val("")
-    return input;
+function Task(name) {
+    this.name = name;
 }
 
 
-function addTodo(task) {
-    todos.push(task)
-    $('#todo__list').append(createLi(task, "todo__element"))
-}
+function ToDoListViewModel() {
+    let self = this
 
-function createLi(task, className) {
+    this.todos = ko.observableArray();
+    this.dones = ko.observableArray();
 
-    let li = $('<li/>')
-        .addClass(className)
+    window.onload = () => {
+        if (localStorage.getItem('todos')) {
+            let tasks = JSON.parse(localStorage.getItem('todos'));
+            for (let i = 0; i < tasks.length; i++) {
+                this.todos.push(tasks[i]);
+            }
+        }
 
-    $(li)
-        .addClass(className)
-
-    $('<span/>')
-        .text(task)
-        .appendTo(li);
-
-    $('<button/>')
-        .text("Delete")
-        .attr("type", "button")
-        .on('click', deleteTask)
-        .appendTo(li);
-
-    $('<input/>')
-        .attr('type', 'checkbox')
-        .on('change', doneTodo)
-        .appendTo(li);
-
-    if ($(li).hasClass("done__element")) {
-        $(li).children('input')
-            .attr({
-                checked: true,
-                disabled: true
-            });
-    }
-
-    return li;
-}
-
-function deleteTask(event) {
-    let deleteButton = event.target;
-
-    let task = $(deleteButton).parent();
-    let taskName = $(task).children('span').text();
-
-    if ($(task).hasClass("todo__element")) {
-        removeFromArray(taskName, todos);
-    } else {
-        removeFromArray(taskName, dones);
-    }
-
-    $(task).remove();
-}
-
-function doneTodo(event) {
-
-    let doneCheckbox = event.target;
-    $(doneCheckbox).attr('disabled', true);
-
-    let doneTask = $(doneCheckbox).parent();
-    $(doneCheckbox).parent().remove();
-
-    let taskName = $(doneTask).children('span').text();
-    removeFromArray(taskName, todos);
-    dones.push(taskName);
-
-    $(doneTask).removeClass('todo__element')
-        .addClass('done__element');
-
-    $(doneTask).children('button').on('click', deleteTask)
-
-    $('#done__list').append(doneTask);
-}
-
-function removeFromArray(item, arr) {
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == item) {
-            arr.splice(i, 1);
-            return;
+        if (localStorage.getItem('dones')) {
+            let tasks = JSON.parse(localStorage.getItem('dones'));
+            for (let i = 0; i < tasks.length; i++) {
+                this.dones.push(tasks[i]);
+            }
         }
     }
+
+    window.onbeforeunload = () => {
+        localStorage.clear();
+        if (this.todos().length != 0) {
+            localStorage.setItem('todos', ko.toJSON(this.todos()));
+        }
+        if (this.dones().length != 0) {
+            localStorage.setItem('dones', ko.toJSON(this.dones()));
+        }
+    }
+
+    this.addTodo = () => {
+        this.todos.push(new Task(document.getElementById('task__input').value));
+    }
+
+    this.deleteTodo = (task) => {
+        this.todos.remove(task);
+    }
+
+    this.deleteDone = (task) => {
+        this.dones.remove(task);
+    }
+
+    this.doneTodo = (task) => {
+        this.dones.push(task);
+        this.todos.remove(task);
+    }
+
 }
+
+
+ko.applyBindings(new ToDoListViewModel());

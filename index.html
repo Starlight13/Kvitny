@@ -3,26 +3,40 @@
 
 <head>
     <title>Page Title</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
 </head>
 <style>
     * {
         margin: 5px;
     }
 </style>
-<script src="index.js"></script>
 <body>
     <h1>To Do list</h1>
     <div class="input__container">
         <input id="task__input" type="text" placeholder="I need to do..." />
-        <input id="add__button" type="button" value="Add" onclick="addTodo(getTaskFromTextField())" />
+        <input id="add__button" type="button" value="Add" data-bind="click: $root.addTodo"/>
     </div>
     <h3>To do:</h3>
-    <ol id="todo__list">
-    </ol>
+    <table>
+        <tbody data-bind="foreach: todos">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td><button data-bind="click: $root.deleteTodo">Delete</button></td>
+                <td><button data-bind="click: $root.doneTodo">Done</button></td>
+            </tr>
+        </tbody>
+    </table>
     <h3>Done:</h3>
+    <table>
+        <tbody data-bind="foreach: dones">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td><button data-bind="click: $root.deleteDone">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
     <ul id="done__list">
     </ul>
 </body>
-
+<script src="index.js"></script>
 </html>
