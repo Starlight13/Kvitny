@@ -3,16 +3,18 @@
 
 <head>
     <title>Квітни - Головна</title>
-    <!-- <link rel="stylesheet" href="css/header-footer.css">
-    <link rel="stylesheet" href="css//index.css"> -->
     <link rel="stylesheet" href="./tmp/index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
 </head>
 
 <body class="page">
     <header class="header">
-        <a href="#" class="link logo">
+        <a href="index.html" class="link logo">
             <img class="logo__img" src="images/logo.svg">
             <div class="logo__text">
                 <p class="logo__title">КВІТНИ</p>
@@ -26,7 +28,7 @@
             <a href="#" id="pay-and-delivery__button" class="link header__button">Оплата та доставка</a>
         </nav>
         <p class="header__phone-number">+38 (098) 784-23-85</p>
-        <a href="#" class="link header__order__button">
+        <a href="#" id="header__order__button" class="link header__order__button">
             <span class="header__order__button__text">Замовити дзвінок</span>
         </a>
         <div class="cart">
@@ -48,9 +50,6 @@
     <section class="popular-bouquet__section">
         <h2 class="section__title">Популярні букети</h2>
         <div class="bouquet__carusel">
-            <button class="button carusel-arrow">
-                <img src="./images/arrow-left.png" />
-            </button>
             <div class="bouquet__card">
                 <img class="card__img" src="./images/popular1.png" />
                 <span class="card__title">Букет “Відкриття”</span>
@@ -69,14 +68,12 @@
                 <span class="card__price">350 грн</span>
                 <button class="button card__cart__button"><span>В кошик</span></button>
             </div>
-            <button class="button carusel-arrow">
-                <img src="./images/arrow-right.png" />
-            </button>
-        </div>
-        <div class="carusel__page-indicators">
-            <button class="button page-indicator selected"></button>
-            <button class="button page-indicator"></button>
-            <button class="button page-indicator"></button>
+            <div class="bouquet__card">
+                <img class="card__img" src="http://s3.weddbook.me/t1/2/7/2/2723975/silk-wedding-bouquet-artificial-wedding-bouquet-rose-wedding-bouquet-faux-flower-wedding-bouquet-hand-tied-faux-wedding-bouquet.jpg" />
+                <span class="card__title">Букет “Спокій”</span>
+                <span class="card__price">350 грн</span>
+                <button class="button card__cart__button"><span>В кошик</span></button>
+            </div>
         </div>
     </section>
     <section class="catalog__section">
@@ -109,7 +106,7 @@
             </div>
         </div>
     </section>
-    <section class="make-your-bouquet__section">
+    <section id="make-your-bouquet__section" class="make-your-bouquet__section">
         <div class="make-your-bouquet__div">
             <h2 class="make-your-bouquet__title">Збери свій букет</h2>
             <p class="make-your-bouquet__info">Якщо Вам не підійшов жоден букет з нашого каталогу Ви можете замовити
@@ -127,24 +124,22 @@
     <section class="instagram__section">
         <h2 class="section__title">Ми в Instagram</h2>
         <div class="instagram__carusel">
-            <button class="button carusel-arrow">
-                <img src="./images/arrow-left.png" />
-            </button>
-            <img class="instagram__img" src="./images/instagram1.png" />
-            <img class="instagram__img" src="./images/instagram2.png" />
-            <img class="instagram__img" src="./images/instagram3.png" />
-            <button class="button carusel-arrow">
-                <img src="./images/arrow-right.png" />
-            </button>
-        </div>
-        <div class="carusel__page-indicators">
-            <button class="button page-indicator selected"></button>
-            <button class="button page-indicator"></button>
-            <button class="button page-indicator"></button>
+            <div class="instagram__img">
+                <img class="instagram__img" src="./images/instagram1.png" />
+            </div>
+            <div class="instagram__img">
+                <img class="instagram__img" src="./images/instagram2.png" />
+            </div>
+            <div class="instagram__img">
+                <img class="instagram__img" src="./images/instagram3.png" />
+            </div>
+            <div class="instagram__img">
+                <img class="instagram__img" src="https://i.pinimg.com/originals/7b/54/12/7b54120e2ae663912e0084f42af3d378.jpg" />
+            </div>
         </div>
     </section>
     <footer class="footer">
-        <a href="#" class="link logo">
+        <a href="index.html" class="link logo">
             <img class="logo__img" src="images/logo.svg">
             <div class="logo__text">
                 <p class="logo__title">КВІТНИ</p>
@@ -158,13 +153,14 @@
             <a href="#" id="pay-and-delivery__button" class="link footer__button">Оплата та доставка</a>
         </nav>
         <a href="#" class="footer__arrow-up">
-            <img  src="./images/arrow-up.svg" />
+            <img src="./images/arrow-up.svg" />
         </a>
         <p class="footer__phone-number">+38 (098) 784-23-85</p>
         <a href="#" class="link footer__order__button">
             <span class="footer__order__button__text">Замовити дзвінок</span>
         </a>
     </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </body>
 
 </html>

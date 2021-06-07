@@ -87,7 +87,12 @@ body {
 
 .header {
     background: #colors[secondary-color-transparant];
+    &.solid {
+        background: #colors[secondary-color];
+        box-shadow: @box-shadow;
+    }
     .centered();
+    transition: background-color linear 300ms;
     height: 80px;
     width: 100%;
     position: fixed;
@@ -172,13 +177,24 @@ body {
     }
 
     .bouquet__carusel {
+        .slick-prev:before {
+          content: url(../images/arrow-left.png);
+        }
+          
+        .slick-next:before {
+          content: url(../images/arrow-right.png);
+        }
+
         .centered();
+
+        width: 90%;
 
         .carusel-arrow {
             padding-bottom: 100px;
         }
 
         .bouquet__card {
+            padding-bottom: 40px;
             margin: 0 30px;
             .column-space-between();
             align-items: center;
@@ -209,22 +225,16 @@ body {
                 .centered();
             }
         }
-    }
-    .carusel__page-indicators {
-        margin-top: 50px;
-        display: flex;
-        justify-content: space-between;
 
-        .page-indicator {
+        .slick-dots li {
+            &.slick-active {
+                opacity: 1;
+            }
             width: 29.11px;
             height: 6px;
             background: #colors[secondary-color];
             opacity: 0.4;
             margin: 6px;
-        }
-
-        .page-indicator.selected {
-            opacity: 1;
         }
     }
 }
@@ -339,18 +349,37 @@ body {
 
 .instagram__section {
     .section();
-
+    position: relative;
+    width: 100%;
+    margin: 0;
     .instagram__carusel {
+        .slick-prev:before {
+            content: url(../images/arrow-left.png);
+          }
+            
+          .slick-next:before {
+            content: url(../images/arrow-right.png);
+          }
+
         .centered();
+        width: 90%;
 
         .instagram__img {
             height: 370px;
-            margin: 0 30px;
+            margin:0 auto;
+            padding-bottom: 30px;
         }
-    }
 
-    .carusel__page-indicators {
-        .popular-bouquet__section > .carusel__page-indicators()
+        .slick-dots li {
+            &.slick-active {
+                opacity: 1;
+            }
+            width: 29.11px;
+            height: 6px;
+            background: #colors[secondary-color];
+            opacity: 0.4;
+            margin: 6px;
+        }
     }
 }
 
