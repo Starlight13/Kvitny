@@ -262,6 +262,42 @@ body {
             @include burger-icon-part();
         }
     }
+
+    .navigation-menu {
+        position: absolute;
+        display: none;
+        background: rgba(68, 83, 64, 0.5);
+        height: 100px;
+
+        @include phone {
+            top: 125px;
+            width: 100%
+        };
+        
+        top: 80px;
+        right: 0;
+        width: 30%;
+
+        .navigation-menu__list {
+            list-style-type: none;
+            padding-left: 0;
+
+            .navigation-menu__list__item {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+
+                a {
+                    @include white-link();
+
+                    &.selected {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
 .baner {

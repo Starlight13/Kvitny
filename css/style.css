@@ -181,6 +181,37 @@ body {
   background: white;
   margin: 4px;
 }
+.header .navigation-menu {
+  position: absolute;
+  display: none;
+  background: rgba(68, 83, 64, 0.5);
+  height: 100px;
+  top: 80px;
+  right: 0;
+  width: 30%;
+}
+@media (max-width: 480px) {
+  .header .navigation-menu {
+    top: 125px;
+    width: 100%;
+  }
+}
+.header .navigation-menu .navigation-menu__list {
+  list-style-type: none;
+  padding-left: 0;
+}
+.header .navigation-menu .navigation-menu__list .navigation-menu__list__item {
+  margin: 5px 0;
+  width: 100%;
+  text-align: center;
+}
+.header .navigation-menu .navigation-menu__list .navigation-menu__list__item a {
+  color: white;
+  text-decoration: none;
+}
+.header .navigation-menu .navigation-menu__list .navigation-menu__list__item a.selected {
+  font-weight: 700;
+}
 
 .baner {
   margin: 0;
