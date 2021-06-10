@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/index.js"></script>
 </head>
@@ -38,11 +40,21 @@
             <a class="header__order__button desktop-only" href="#">
                 <span class="header__order__button__text">Замовити дзвінок</span>
             </a>
-            <button class="button cart">
+            <a class="link cart">
                 <img class="cart__img" src="images/cart.svg">
                 <span id="cart__price" class="cart__price">567 грн.</span>
                 <img class="cart__caret-down" src="images/caret-down.svg">
-            </button>
+                <div class="full-cart">
+                    <ul class="full-cart__list">
+                        <li class="full-cart__list__item">
+                            <img src="./images/popular1.png" alt="">
+                            <span class="name">Букет “Ніжність”</span>
+                            <span class="price">300 грн</span>
+                        </li>
+                    </ul>
+                    <button class="button order__button">Замовити</button>
+                </div>
+            </a>
             <button class="button header__navigation-icon tablet-only">
                 <span class="icon-part"></span>
                 <span class="icon-part"></span>
@@ -69,35 +81,30 @@
     <section class="popular-bouquet__section">
         <h2 class="section__title">Популярні букети</h2>
         <div class="bouquet__carusel">
-            <button class="button carusel-arrow desktop-only">
-                <img src="./images/arrow-left.png" />
-            </button>
-            <div class="bouquet__card small-screen" id="bouquet__card1">
+            <div class="bouquet__card">
                 <img class="card__img" src="./images/popular1.png" />
                 <span class="card__title">Букет “Відкриття”</span>
                 <span class="card__price">250 грн</span>
                 <button class="button card__cart__button"><span>В кошик</span></button>
             </div>
-            <div class="bouquet__card medium-screen" id="bouquet__card2">
+            <div class="bouquet__card">
                 <img class="card__img" src="./images/popular2.png" />
                 <span class="card__title">Букет “Ніжність”</span>
                 <span class="card__price">300 грн</span>
                 <button class="button card__cart__button"><span>В кошик</span></button>
             </div>
-            <div class="bouquet__card large-screen" id="bouquet__card3">
+            <div class="bouquet__card">
                 <img class="card__img" src="./images/popular3.png" />
                 <span class="card__title">Букет “Спокій”</span>
                 <span class="card__price">350 грн</span>
                 <button class="button card__cart__button"><span>В кошик</span></button>
             </div>
-            <button class="button carusel-arrow desktop-only">
-                <img  src="./images/arrow-right.png" />
-            </button>
-        </div>
-        <div class="carusel__page-indicators">
-            <button class="button page-indicator selected"></button>
-            <button class="button page-indicator"></button>
-            <button class="button page-indicator"></button>
+            <div class="bouquet__card">
+                <img class="card__img" src="./images/popular2.png" />
+                <span class="card__title">Букет “Спокій”</span>
+                <span class="card__price">350 грн</span>
+                <button class="button card__cart__button"><span>В кошик</span></button>
+            </div>
         </div>
     </section>
     <section class="catalog__section">
@@ -115,31 +122,31 @@
             </div>
         </div>
         <div class="catalog__grid">
-            <a href="#" class="catalog__card flowers-in-box">
+            <div class="catalog__card flowers-in-box">
                 <div class="card__footer">
                     <span class="card__title">Квіти в коробці</span>
                 </div>
-            </a>
-            <a href="#" class="catalog__card avtor-bouquet">
+            </div>
+            <div class="catalog__card avtor-bouquet">
                 <div class="card__footer">
                     <span class="card__title">Авторські букети</span>
                 </div>
-            </a>
-            <a href="#" class="catalog__card composition">
+            </div>
+            <div class="catalog__card composition">
                 <div class="card__footer">
                     <span class="card__title">Композиції</span>
                 </div>
-            </a>
-            <a href="#" class="catalog__card festive-bouquet">
+            </div>
+            <div class="catalog__card festive-bouquet">
                 <div class="card__footer">
                     <span class="card__title">Урочисті букети</span>
                 </div>
-            </a>
-            <a href="#" class="catalog__card florism">
+            </div>
+            <div class="catalog__card florism">
                 <div class="card__footer">
                     <span class="card__title">Флористика</span>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
     <section class="make-your-bouquet__section">
@@ -160,26 +167,18 @@
     <section class="instagram__section">
         <h2 class="section__title">Ми в Instagram</h2>
         <div class="instagram__carusel">
-            <button class="button carusel-arrow desktop-only">
-                <img src="./images/arrow-left.png" />
-            </button>
-            <div class="image__container small-screen">
-                <img class="instagram__img" id="instagram__img1" src="./images/instagram1.png" />
+            <div class="instagram__img">
+                <img class="img" src="./images/instagram1.png" />
             </div>
-            <div class="image__container medium-screen">
-                <img class="instagram__img" id="instagram__img2" src="./images/instagram2.png" />
+            <div class="instagram__img">
+                <img class="img" src="./images/instagram2.png" />
             </div>
-            <div class="image__container large-screen">
-                <img class="instagram__img" id="instagram__img3" src="./images/instagram3.png" />
+            <div class="instagram__img">
+                <img class="img" src="./images/instagram3.png" />
             </div>
-            <button class="button carusel-arrow desktop-only">
-                <img src="./images/arrow-right.png" />
-            </button>
-        </div>
-        <div class="carusel__page-indicators">
-            <button class="button page-indicator selected"></button>
-            <button class="button page-indicator"></button>
-            <button class="button page-indicator"></button>
+            <div class="instagram__img">
+                <img class="img" src="./images/instagram2.png" />
+            </div>
         </div>
     </section>
     <footer class="footer">
@@ -211,6 +210,7 @@
             <img class="footer__arrow-up small-screen medium-screen" src="./images/arrow-up.svg" />
         </a>
     </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </body>
 
 </html>
