@@ -18,21 +18,20 @@ window.onload = () => {
 
     document.getElementsByClassName('percent')[0].addEventListener('click', () => calculatePercent())
     document.getElementsByClassName('claculator-clear__button')[0].addEventListener('click', () => clearCalculator())
-    document.getElementsByClassName('equal__button')[0].addEventListener('click', () => { clearFlag = true; calculate(parseFloat(input.value)) })
+    document.getElementsByClassName('equal__button')[0].addEventListener('click', () => { clearFlag = true; calculate(input.value) })
 
     input = document.getElementsByTagName('input')[0];
 }
 
 let chooseOperation = (className) => {
-    clearFlag = false
+    clearFlag = false;
 
     if (input.value != "") {
         if (operator !== undefined)
-            calculate(parseFloat(input.value));
+            calculate(input.value);
 
-        firstNumber = parseFloat(input.value);
+        firstNumber = input.value;
         operator = className;
-        input.value = "0";
         clearFlag = true;
     } else {
         operator = className;
@@ -56,11 +55,20 @@ let removeHighlight = () => {
     }
 }
 
-let calculate = (secondNumber) => {
+let calculate = (value) => {
     removeHighlight();
-    console.log(`first number: ${firstNumber}, second number: ${secondNumber}, operator: ${operator}`)
 
+    if (isNaN(firstNumber) || isNaN(value)) {
+        input.value = "Error";
+        firstNumber = undefined;
+        operator = undefined;
+        return;
+    }
+
+    firstNumber = parseFloat(firstNumber);
+    let secondNumber = parseFloat(value);
     let result;
+
     switch (operator) {
         case "division__operation":
             result = firstNumber / secondNumber;
@@ -102,5 +110,5 @@ let clearCalculator = () => {
 }
 
 let calculatePercent = () => {
-    input.value = parseFloat(input.value)/100
+    input.value = parseFloat(input.value)/100;
 }
